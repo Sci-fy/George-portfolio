@@ -6,6 +6,7 @@
     <title>George Xavier | Web Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -20,6 +21,11 @@
                 }
             }
         }
+        
+        // Initialize EmailJS with your public key
+        (function() {
+            emailjs.init("OfABnB9SWZMnvMCp5"); // You'll need to replace this with your actual EmailJS public key
+        })();
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -54,6 +60,25 @@
         .gallery-item:hover {
             transform: scale(1.03);
         }
+        
+        .form-message {
+            display: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -86,7 +111,7 @@
             </div>
             <div class="md:w-1/2 flex justify-center">
                 <div class="bg-gradient-to-br from-primary to-accent w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="George Xavier" class="w-full h-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="George Xavier" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -98,7 +123,7 @@
             <h2 class="text-3xl font-bold text-center mb-12">About <span class="text-primary">Me</span></h2>
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="About George" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
+                    <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="About George" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
                 </div>
                 <div class="md:w-1/2 md:pl-12">
                     <h3 class="text-2xl font-semibold mb-4">A little background</h3>
@@ -298,20 +323,33 @@
             
             <div class="flex flex-col md:flex-row gap-10">
                 <div class="md:w-1/2">
-                    <form class="space-y-6">
+                    <form id="contact-form" class="space-y-6">
                         <div>
-                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <label for="name" class="block text-gray-700 mb-2">Your Name *</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <label for="email" class="block text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
                         </div>
                         <div>
-                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                            <label for="budget" class="block text-gray-700 mb-2">Project Budget (USD) *</label>
+                            <select id="budget" name="budget" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
+                                <option value="">Select a range</option>
+                                <option value="Under $1,000">Under $1,000</option>
+                                <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+                                <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                                <option value="$10,000 - $20,000">$10,000 - $20,000</option>
+                                <option value="Over $20,000">Over $20,000</option>
+                                <option value="Not sure">Not sure yet</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
                         </div>
                         <button type="submit" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary w-full">Send Message</button>
+                        <div id="form-message" class="form-message"></div>
                     </form>
                 </div>
                 
@@ -374,7 +412,7 @@
     <!-- Footer -->
     <footer class="bg-dark text-white py-8">
         <div class="container mx-auto px-6 text-center">
-            <p>© 2023 George Xavier. All rights reserved.</p>
+            <p>© 2025 George Xavier. All rights reserved.</p>
             <p class="mt-2 text-gray-400">Designed and developed with ❤️ by George Xavier</p>
         </div>
     </footer>
@@ -399,6 +437,49 @@
             skillBars.forEach(bar => {
                 observer.observe(bar);
             });
+            
+            // Contact form handling
+            const contactForm = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic form validation
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const budget = document.getElementById('budget').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !budget || !message) {
+                    showMessage('Please fill in all required fields.', 'error');
+                    return;
+                }
+                
+                // Here you would normally send the form data to your server or email service
+                // For demonstration, we'll simulate a successful submission
+                
+                // Using EmailJS to send the form data
+                emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                    .then(function() {
+                        showMessage('Your message has been sent successfully! I will get back to you soon.', 'success');
+                        contactForm.reset();
+                    }, function(error) {
+                        showMessage('There was an error sending your message. Please try again later.', 'error');
+                        console.error('EmailJS error:', error);
+                    });
+            });
+            
+            function showMessage(text, type) {
+                formMessage.textContent = text;
+                formMessage.className = 'form-message ' + type;
+                formMessage.style.display = 'block';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            }
         });
     </script>
 </body>
