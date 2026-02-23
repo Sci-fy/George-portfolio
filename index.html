@@ -1,486 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>George Xavier | Web Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2563eb',
-                        secondary: '#1e40af',
-                        accent: '#3b82f6',
-                        dark: '#1f2937',
-                        light: '#f8fafc'
-                    }
-                }
-            }
-        }
-        
-        // Initialize EmailJS with your public key
-        (function() {
-            emailjs.init("OfABnB9SWZMnvMCp5"); // You'll need to replace this with your actual EmailJS public key
-        })();
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .hero-pattern {
-            background-color: #1e40af;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .skill-bar {
-            transition: width 2s ease;
-        }
-        
-        .gallery-item {
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .form-message {
-            display: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>George Mitland · web developer — Chester</title>
+  <!-- Tailwind via CDN + a touch of custom smoothness -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 (free) for subtle icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* gentle custom overrides & smooth behaviour */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* image hover scale (optional) — keeps it subtle */
+    .img-scale {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .img-scale:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+    }
+    /* for the django tagline */
+    .tech-tag {
+      background: linear-gradient(145deg, #f8fafc, #e9edf2);
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-primary">GX</a>
-            <div class="hidden md:flex space-x-10">
-                <a href="#home" class="hover:text-primary">Home</a>
-                <a href="#about" class="hover:text-primary">About</a>
-                <a href="#skills" class="hover:text-primary">Skills</a>
-                <a href="#portfolio" class="hover:text-primary">Portfolio</a>
-                <a href="#contact" class="hover:text-primary">Contact</a>
-            </div>
-            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary">Hire Me</a>
-        </div>
-    </nav>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased">
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-24">
-        <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center">
-            <div class="md:w-1/2 text-center md:text-left mt-10 md:mt-0">
-                <h1 class="text-4xl md:text-5xl font-bold text-white">Hi, I'm <span class="text-accent">George Xavier</span></h1>
-                <h2 class="text-2xl md:text-3xl text-white mt-2">Web Developer & Django Expert</h2>
-                <p class="text-gray-200 mt-4 max-w-md mx-auto md:mx-0">I create stunning, responsive websites with modern technologies that deliver exceptional user experiences.</p>
-                <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="#portfolio" class="bg-accent text-white px-6 py-3 rounded-lg hover:bg-secondary">View My Work</a>
-                    <a href="#contact" class="border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-primary">Contact Me</a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="bg-gradient-to-br from-primary to-accent w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="George Xavier" class="w-full h-full object-cover">
-                </div>
-            </div>
+  <!-- minimalist header / navigation -->
+  <header class="max-w-6xl mx-auto px-6 py-6 md:py-8 flex flex-wrap justify-between items-center">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-medium tracking-tight">George Mitland</h1>
+      <p class="text-sm md:text-base text-stone-500 mt-0.5 flex items-center gap-1.5">
+        <i class="fa-solid fa-location-dot text-xs text-emerald-700"></i> Cheshire, Chester
+      </p>
+    </div>
+    <div class="flex gap-5 text-stone-400 text-lg">
+      <a href="#" class="hover:text-emerald-700 transition"><i class="fa-brands fa-github"></i></a>
+      <a href="#" class="hover:text-emerald-700 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="#" class="hover:text-emerald-700 transition"><i class="fa-regular fa-envelope"></i></a>
+    </div>
+  </header>
+
+  <!-- main content -->
+  <main class="max-w-6xl mx-auto px-6">
+
+    <!-- HERO section: intro + his image (primary showcase) -->
+    <section class="grid md:grid-cols-5 gap-8 md:gap-12 items-center py-6 md:py-10">
+      <div class="md:col-span-3 order-2 md:order-1">
+        <span class="text-sm font-medium text-emerald-700 uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full">full‑stack developer</span>
+        <h2 class="text-4xl md:text-5xl font-light leading-tight mt-5 text-stone-800">crafting <span class="font-medium border-b-2 border-emerald-300 pb-1">web experiences</span> with Django & tailwind</h2>
+        <p class="text-stone-600 text-lg max-w-xl mt-5 leading-relaxed">
+          I’m George — from the historic walls of Chester to the digital frontier. 
+          I build clean, performant websites and web apps with a designer’s eye.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-7">
+          <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium shadow-sm flex items-center gap-2"><i class="fa-brands fa-python text-emerald-600"></i>Django</span>
+          <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium shadow-sm flex items-center gap-2"><i class="fa-brands fa-js text-amber-500"></i>JavaScript</span>
+          <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium shadow-sm flex items-center gap-2"><i class="fa-brands fa-css3-alt text-blue-500"></i>CSS / Tailwind</span>
+          <span class="tech-tag px-4 py-2 rounded-full text-sm font-medium shadow-sm flex items-center gap-2"><i class="fa-brands fa-html5 text-orange-500"></i>HTML5</span>
         </div>
+      </div>
+      <!-- his image (main portrait) – fully responsive & elegant -->
+      <div class="md:col-span-2 order-1 md:order-2 flex justify-center md:justify-end">
+        <div class="relative max-w-xs md:max-w-full">
+          <div class="absolute -inset-1 bg-gradient-to-r from-emerald-200/50 to-stone-200/50 rounded-3xl blur-xl"></div>
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+               alt="George Mitland – web developer in Chester" 
+               class="relative rounded-3xl shadow-lg object-cover w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 border-4 border-white/80 img-scale"
+               loading="lazy">
+          <!-- small badge: local chester -->
+          <span class="absolute -bottom-3 -right-3 bg-white/90 backdrop-blur-sm text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2 font-medium"><i class="fa-solid fa-crown text-xs text-amber-600"></i>Cheshire made</span>
+        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">About <span class="text-primary">Me</span></h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="About George" class="rounded-lg shadow-lg w-full max-w-md mx-auto">
-                </div>
-                <div class="md:w-1/2 md:pl-12">
-                    <h3 class="text-2xl font-semibold mb-4">A little background</h3>
-                    <p class="text-gray-600 mb-4">Hello! I'm George Xavier, a 38-year-old web developer from Laurentides, Canada with over 12 years of experience in creating beautiful, functional websites and web applications.</p>
-                    <p class="text-gray-600 mb-4">I specialize in front-end development using HTML, CSS, JavaScript, and Tailwind CSS, along with back-end development using Django. I'm passionate about creating intuitive user experiences and clean, maintainable code.</p>
-                    <p class="text-gray-600 mb-6">When I'm not coding, you can find me hiking in the beautiful Laurentian mountains, reading tech blogs, or experimenting with new web technologies.</p>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="bg-gray-100 px-4 py-2 rounded-lg">
-                            <span class="font-semibold">Name:</span> George Xavier
-                        </div>
-                        <div class="bg-gray-100 px-4 py-2 rounded-lg">
-                            <span class="font-semibold">Email:</span> georgexavier8080@gmail.com
-                        </div>
-                        <div class="bg-gray-100 px-4 py-2 rounded-lg">
-                            <span class="font-semibold">From:</span> Laurentides, Canada
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- divider – simple -->
+    <div class="border-b border-stone-200/70 my-10"></div>
+
+    <!-- IMAGE SHOWCASE GALLERY (four images, representing his work/style) -->
+    <section class="py-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl md:text-3xl font-light flex items-center gap-3">
+          <i class="fa-regular fa-images text-emerald-600 text-3xl"></i>recent projects
+        </h3>
+        <p class="text-stone-500 text-sm hidden sm:block">websites · dashboards · design</p>
+      </div>
+
+      <!-- grid of 4 images: each showcases a different aspect (design/dev) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+        <!-- image 1: modern web app -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md bg-stone-100 aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+               alt="dashboard design" 
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <span class="text-white text-xs font-medium bg-black/40 backdrop-blur-sm px-2 py-1 rounded">analytics dashboard</span>
+          </div>
         </div>
+        <!-- image 2: e‑commerce / shop concept -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md bg-stone-100 aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1523206481341-8e8c7a1e41f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+               alt="ecommerce platform" 
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <span class="text-white text-xs font-medium bg-black/40 backdrop-blur-sm px-2 py-1 rounded">craft shop (Django)</span>
+          </div>
+        </div>
+        <!-- image 3: portfolio / visual design -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md bg-stone-100 aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+               alt="minimal portfolio site" 
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <span class="text-white text-xs font-medium bg-black/40 backdrop-blur-sm px-2 py-1 rounded">artist portfolio</span>
+          </div>
+        </div>
+        <!-- image 4: backend / code / django -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-md bg-stone-100 aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+               alt="code on screen" 
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+               loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3">
+            <span class="text-white text-xs font-medium bg-black/40 backdrop-blur-sm px-2 py-1 rounded">clean backend</span>
+          </div>
+        </div>
+      </div>
+      <!-- subtle note: all images are placeholders representing his work -->
+      <p class="text-right text-stone-400 text-xs mt-3 italic">* selected designs & code — all built with Django, tailwind, js</p>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">My <span class="text-primary">Skills</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>HTML/CSS</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>JavaScript</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Tailwind CSS</span>
-                                <span>92%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Django</span>
-                                <span>88%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 88%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Professional Skills</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Web Design</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Backend Development</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Responsive Design</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span>Problem Solving</span>
-                                <span>93%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full skill-bar" style="width: 93%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- extra showcase: his favourite recent work (large card) — also an image -->
+    <section class="my-14 md:my-18">
+      <div class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden grid md:grid-cols-2">
+        <div class="p-8 md:p-10 flex flex-col justify-center">
+          <span class="text-emerald-600 text-sm font-semibold tracking-wider">featured project</span>
+          <h4 class="text-3xl font-light mt-2 mb-4">Chester Heritage<br> digital archive</h4>
+          <p class="text-stone-600 mb-5 leading-relaxed">A Django-powered interactive map & image archive for local history. Full-text search, responsive design, and a custom Tailwind UI — built for the civic trust.</p>
+          <div class="flex gap-4 text-sm">
+            <span class="bg-stone-100 px-4 py-2 rounded-full font-mono text-xs">Django 4.2</span>
+            <span class="bg-stone-100 px-4 py-2 rounded-full font-mono text-xs">htmx</span>
+            <span class="bg-stone-100 px-4 py-2 rounded-full font-mono text-xs">tailwind</span>
+          </div>
         </div>
+        <div class="relative min-h-[240px] md:min-h-full bg-stone-200">
+          <img src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+               alt="Chester city walls historic imagery displayed on tablet" 
+               class="w-full h-full object-cover absolute inset-0"
+               loading="lazy">
+          <div class="absolute bottom-3 left-3 bg-black/40 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">📍 Chester city walls</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-4">My <span class="text-primary">Portfolio</span></h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Here are some of the projects I've worked on. Each project represents different skills and technologies I've mastered over the years.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="E-commerce Website" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
-                        <p class="text-gray-600 mb-4">A full-featured online store with product management, cart, and checkout functionality.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Django</span>
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Tailwind</span>
-                        </div>
-                        <a href="#" class="text-primary font-semibold hover:underline">View Project →</a>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Booking System" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Booking System</h3>
-                        <p class="text-gray-600 mb-4">A reservation system for service-based businesses with calendar integration.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Django</span>
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">HTML/CSS</span>
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
-                        </div>
-                        <a href="#" class="text-primary font-semibold hover:underline">View Project →</a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Analytics Dashboard" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Analytics Dashboard</h3>
-                        <p class="text-gray-600 mb-4">A data visualization dashboard with interactive charts and real-time updates.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">JavaScript</span>
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Django</span>
-                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">Tailwind</span>
-                        </div>
-                        <a href="#" class="text-primary font-semibold hover:underline">View Project →</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Gallery Section -->
-            <h3 class="text-2xl font-semibold text-center mt-16 mb-8">Project <span class="text-primary">Gallery</span></h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="gallery-item rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Project 1" class="w-full h-40 object-cover">
-                </div>
-                <div class="gallery-item rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Project 2" class="w-full h-40 object-cover">
-                </div>
-                <div class="gallery-item rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Project 3" class="w-full h-40 object-cover">
-                </div>
-                <div class="gallery-item rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 4" class="w-full h-40 object-cover">
-                </div>
-            </div>
+    <!-- "designed websites" + django backend banner -->
+    <section class="my-14">
+      <div class="tech-tag rounded-2xl p-6 md:p-8 text-center border border-stone-200/60 shadow-inner">
+        <div class="flex flex-wrap items-center justify-center gap-3 text-2xl md:text-3xl font-light">
+          <i class="fa-brands fa-python text-emerald-600"></i>
+          <span>django ·</span>
+          <i class="fa-brands fa-js text-amber-500"></i>
+          <span>javascript ·</span>
+          <i class="fa-brands fa-css3-alt text-blue-500"></i>
+          <span>tailwind ·</span>
+          <i class="fa-regular fa-gem text-stone-500"></i>
+          <span>html</span>
         </div>
+        <p class="text-stone-600 mt-5 max-w-2xl mx-auto">Every line of code, every pixel — George combines the robustness of Django with the elegance of modern CSS. Based in Chester, serving clients worldwide.</p>
+        <!-- small icon grid of chester -->
+        <div class="flex justify-center gap-2 mt-6 text-stone-400 text-xs">
+          <span><i class="fa-regular fa-clock"></i> 7+ years</span>
+          <span class="text-stone-300">|</span>
+          <span><i class="fa-solid fa-code"></i> 40+ projects</span>
+          <span class="text-stone-300">|</span>
+          <span><i class="fa-regular fa-building"></i> Cheshire</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-4">Get In <span class="text-primary">Touch</span></h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
-            
-            <div class="flex flex-col md:flex-row gap-10">
-                <div class="md:w-1/2">
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-gray-700 mb-2">Your Name *</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email Address *</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
-                        </div>
-                        <div>
-                            <label for="budget" class="block text-gray-700 mb-2">Project Budget (USD) *</label>
-                            <select id="budget" name="budget" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required>
-                                <option value="">Select a range</option>
-                                <option value="Under $1,000">Under $1,000</option>
-                                <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-                                <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                                <option value="$10,000 - $20,000">$10,000 - $20,000</option>
-                                <option value="Over $20,000">Over $20,000</option>
-                                <option value="Not sure">Not sure yet</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 mb-2">Your Message *</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
-                        </div>
-                        <button type="submit" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary w-full">Send Message</button>
-                        <div id="form-message" class="form-message"></div>
-                    </form>
-                </div>
-                
-                <div class="md:w-1/2">
-                    <div class="bg-white p-8 rounded-xl shadow-lg">
-                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fas fa-envelope text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Email</h4>
-                                    <p class="text-gray-600">georgexavier8080@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fas fa-map-marker-alt text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Location</h4>
-                                    <p class="text-gray-600">Laurentides, Canada</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                                    <i class="fas fa-phone text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold">Phone</h4>
-                                    <p class="text-gray-600">+1 (123) 456-7890</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-semibold mb-4">Follow Me</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-primary hover:text-white">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-primary hover:text-white">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-primary hover:text-white">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-primary hover:text-white">
-                                    <i class="fab fa-dribbble"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- another image / personal touch (george in a casual dev setting) -->
+    <section class="my-16 flex flex-col md:flex-row gap-6 items-center bg-white p-6 rounded-3xl shadow-sm">
+      <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-emerald-100 shrink-0">
+        <img src="https://images.unsplash.com/photo-1531427186627-4fd2a578f2c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+             alt="George coding outdoors" 
+             class="w-full h-full object-cover"
+             loading="lazy">
+      </div>
+      <div class="text-center md:text-left">
+        <h5 class="text-xl font-medium">outside the editor</h5>
+        <p class="text-stone-500">When I’m not building with Django, you’ll find me walking the Chester walls, enjoying a pint at a local pub, or sketching UI ideas. I believe great web design starts with understanding people — and a bit of northern charm.</p>
+        <div class="flex gap-4 mt-3 text-emerald-700 justify-center md:justify-start">
+          <span><i class="fa-regular fa-map"></i> Chester</span>
+          <span><i class="fa-regular fa-comment"></i> let's talk</span>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p>© 2025 George Xavier. All rights reserved.</p>
-            <p class="mt-2 text-gray-400">Designed and developed with ❤️ by George Xavier</p>
-        </div>
-    </footer>
+  <!-- footer with simple contact / location -->
+  <footer class="border-t border-stone-200 mt-12 py-8 bg-white/50">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-stone-500 text-sm">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-chess-board text-emerald-600"></i>
+        <span>© 2025 George Mitland — web developer from Cheshire, Chester</span>
+      </div>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-stone-800 transition"><i class="fa-regular fa-envelope"></i> hello@georgemitland.dev</a>
+        <span class="text-stone-300 hidden sm:inline">|</span>
+        <span><i class="fa-solid fa-phone-flip"></i> +44 1244 123 456</span>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        // Simple animation for skill bars when they come into view
-        document.addEventListener('DOMContentLoaded', function() {
-            const skillBars = document.querySelectorAll('.skill-bar');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const width = entry.target.style.width;
-                        entry.target.style.width = '0';
-                        setTimeout(() => {
-                            entry.target.style.width = width;
-                        }, 100);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            skillBars.forEach(bar => {
-                observer.observe(bar);
-            });
-            
-            // Contact form handling
-            const contactForm = document.getElementById('contact-form');
-            const formMessage = document.getElementById('form-message');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic form validation
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const budget = document.getElementById('budget').value;
-                const message = document.getElementById('message').value;
-                
-                if (!name || !email || !budget || !message) {
-                    showMessage('Please fill in all required fields.', 'error');
-                    return;
-                }
-                
-                // Here you would normally send the form data to your server or email service
-                // For demonstration, we'll simulate a successful submission
-                
-                // Using EmailJS to send the form data
-                emailjs.sendForm('service_inqx6dr', 'template_gy9ri59', this)
-                    .then(function() {
-                        showMessage('Your message has been sent successfully! I will get back to you soon.', 'success');
-                        contactForm.reset();
-                    }, function(error) {
-                        showMessage('There was an error sending your message. Please try again later.', 'error');
-                        console.error('EmailJS error:', error);
-                    });
-            });
-            
-            function showMessage(text, type) {
-                formMessage.textContent = text;
-                formMessage.className = 'form-message ' + type;
-                formMessage.style.display = 'block';
-                
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 5000);
-            }
-        });
-    </script>
+  <!-- tiny extra: django badge (whimsical) -->
+  <div class="fixed bottom-4 left-4 opacity-50 hover:opacity-100 transition bg-white/80 backdrop-blur-sm rounded-full py-1 pl-2 pr-3 text-xs shadow-md flex items-center gap-2 text-stone-600">
+    <i class="fa-brands fa-python text-emerald-600 text-sm"></i>
+    <span>Django • tailwind</span>
+  </div>
 </body>
 </html>
